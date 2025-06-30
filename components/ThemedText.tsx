@@ -1,6 +1,7 @@
 import React from 'react'
 import { StyleSheet, Text, type TextProps } from 'react-native'
 
+import { Colors } from '@/constants/Colors'
 import { useThemeColor } from '@/hooks/useThemeColor'
 
 export type ThemedTextProps = TextProps & {
@@ -56,6 +57,6 @@ const styles = StyleSheet.create({
   link: {
     lineHeight: 30,
     fontSize: 16,
-    color: '#0a7ea4',
+    color: Colors.deepSkyBlue,
   },
 })

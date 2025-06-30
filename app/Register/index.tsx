@@ -1,90 +1,100 @@
-import React, { useState } from 'react';
-import { StyleSheet, TextInput, Button, View } from 'react-native';
+import React, { useState } from 'react'
+import { Button, StyleSheet, TextInput, View } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { useColorScheme } from '@/hooks/useColorScheme'
+import { Colors } from 'react-native/Libraries/NewAppScreen'
 
 const RegisterScreen = () => {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [submitted, setSubmitted] = useState(false);
+  const theme = useColorScheme() ?? 'light'
+  const _styles = styles(theme)
+
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [submitted, setSubmitted] = useState(false)
 
   const handleSubmit = () => {
-    setSubmitted(true);
+    setSubmitted(true)
     // Here you would typically handle registration logic (API call, validation, etc.)
-  };
+  }
 
   return (
-    <ThemedView style={styles.container}>
-      <ThemedText type="title" style={styles.title}>
+    <ThemedView style={_styles.container}>
+      <ThemedText type='title' style={_styles.title}>
         Register
       </ThemedText>
-      <View style={styles.form}>
+      <View style={_styles.form}>
         <TextInput
-          style={styles.input}
-          placeholder="Name"
+          style={_styles.input}
+          placeholder='Name'
           value={name}
           onChangeText={setName}
-          autoCapitalize="words"
+          autoCapitalize='words'
         />
         <TextInput
-          style={styles.input}
-          placeholder="Email"
+          style={_styles.input}
+          placeholder='Email'
           value={email}
           onChangeText={setEmail}
-          keyboardType="email-address"
-          autoCapitalize="none"
+          keyboardType='email-address'
+          autoCapitalize='none'
         />
         <TextInput
-          style={styles.input}
-          placeholder="Password"
+          style={_styles.input}
+          placeholder='Password'
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title="Register" onPress={handleSubmit} />
+        <Button title='Register' onPress={handleSubmit} />
         {submitted && (
-          <ThemedText style={styles.successMsg}>
+          <ThemedText style={_styles.successMsg}>
             Registration submitted!
           </ThemedText>
         )}
       </View>
     </ThemedView>
-  );
-};
+  )
+}
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 20,
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 10,
-  },
-  form: {
-    width: '100%',
-    maxWidth: 400,
-    marginTop: 20,
-  },
-  input: {
-    height: 44,
-    borderColor: '#ccc',
-    borderWidth: 1,
-    borderRadius: 8,
-    marginBottom: 16,
-    paddingHorizontal: 12,
-    backgroundColor: '#fff',
-  },
-  successMsg: {
-    color: 'green',
-    marginTop: 16,
-    textAlign: 'center',
-  },
-});
+const styles = (theme: string) =>
+  StyleSheet.create({
+    container: {
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
+      padding: 20,
+    },
+    title: {
+      fontSize: 24,
+      fontWeight: 'bold',
+      marginBottom: 10,
+    },
+    form: {
+      width: '100%',
+      maxWidth: 400,
+      marginTop: 20,
+    },
+    input: {
+      height: 44,
+      borderColor:
+        theme === 'light'
+          ? Colors.light.chineseSilver
+          : Colors.dark.chineseSilver,
+      borderWidth: 1,
+      borderRadius: 8,
+      marginBottom: 16,
+      paddingHorizontal: 12,
+      backgroundColor: theme === 'light' ? Colors.white : Colors.darkCharcoal,
+      color: theme === 'light' ? Colors.black : Colors.white,
+    },
+    successMsg: {
+      color: 'green',
+      marginTop: 16,
+      textAlign: 'center',
+    },
+  })
 
-export default RegisterScreen;
+export default RegisterScreen
