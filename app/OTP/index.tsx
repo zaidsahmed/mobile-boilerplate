@@ -1,46 +1,22 @@
-import React, { useState } from 'react'
-import { Keyboard, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import { Colors } from '@/constants/Colors'
-import { useColorScheme } from '@/hooks/useColorScheme'
-
-const OTP_LENGTHS = [4, 6]
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/Colors';
+import { useOTPViewModel } from './useOTPViewModel';
 
 const OTPVerificationScreen = () => {
-  const theme = useColorScheme() ?? 'light'
-  const _styles = styles(theme)
-
-  const [otp, setOtp] = useState('')
-  const [error, setError] = useState('')
-  const [success, setSuccess] = useState('')
-  const [verifying, setVerifying] = useState(false)
-
-  const handleChange = (text: string) => {
-    // Only allow numbers, max 6 digits
-    const sanitized = text.replace(/[^0-9]/g, '').slice(0, 6)
-    setOtp(sanitized)
-    setError('')
-    setSuccess('')
-  }
-
-  const handleVerify = () => {
-    Keyboard.dismiss()
-    if (!OTP_LENGTHS.includes(otp.length)) {
-      setSuccess('')
-      setError('OTP must be 4 or 6 digits')
-      return
-    }
-    setVerifying(true)
-
-    // Simulate verification (replace with real logic)
-
-    setTimeout(() => {
-      setVerifying(false)
-      setSuccess('OTP verified!')
-    }, 1000)
-  }
+  const {
+    theme,
+    otp,
+    handleChange,
+    error,
+    success,
+    verifying,
+    handleVerify,
+  } = useOTPViewModel();
+  const _styles = styles(theme);
 
   return (
     <ThemedView style={_styles.container}>
@@ -78,8 +54,8 @@ const OTPVerificationScreen = () => {
         </ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  )
-}
+  );
+};
 
 const styles = (theme: string) =>
   StyleSheet.create({
@@ -115,12 +91,12 @@ const styles = (theme: string) =>
       letterSpacing: 8,
     },
     error: {
-      color: 'red',
+      color: Colors.error,
       marginBottom: 12,
       textAlign: 'center',
     },
     success: {
-      color: 'green',
+      color: Colors.success,
       marginBottom: 12,
       textAlign: 'center',
     },
@@ -141,5 +117,5 @@ const styles = (theme: string) =>
       fontSize: 18,
       fontWeight: 'bold',
     },
-  })
-export default OTPVerificationScreen
+  });
+export default OTPVerificationScreen;

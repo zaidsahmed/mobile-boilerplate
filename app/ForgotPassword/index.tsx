@@ -1,24 +1,19 @@
-import React, { useState } from 'react'
-import { Alert, StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import { Colors } from '@/constants/Colors'
-import { useColorScheme } from '@/hooks/useColorScheme'
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/Colors';
+import { useForgotPasswordViewModel } from './useForgotPasswordViewModel';
 
 const ForgotPasswordScreen = () => {
-  const theme = useColorScheme() ?? 'light'
-  const _styles = styles(theme)
-
-  const [email, setEmail] = useState('')
-
-  const handleForgotPassword = () => {
-    // Here you would typically trigger your password reset logic
-    Alert.alert(
-      'Password Reset',
-      `If an account exists for ${email}, a reset link will be sent.`
-    )
-  }
+  const {
+    theme,
+    email,
+    setEmail,
+    handleForgotPassword,
+  } = useForgotPasswordViewModel();
+  const _styles = styles(theme);
 
   return (
     <ThemedView style={_styles.container}>
@@ -42,8 +37,8 @@ const ForgotPasswordScreen = () => {
         <ThemedText style={_styles.buttonText}>Send Reset Link</ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  )
-}
+  );
+};
 
 const styles = (theme: string) =>
   StyleSheet.create({

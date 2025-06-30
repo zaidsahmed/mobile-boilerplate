@@ -1,10 +1,24 @@
-import { useEffect } from 'react';
-import { useRouter } from 'expo-router';
+import { useRouter } from 'expo-router'
+import { useCallback, useEffect } from 'react'
 
 export default function Index() {
-  const router = useRouter();
+  const { redirectToLogin } = useNavigationViewModel()
+
   useEffect(() => {
-    router.replace('/Login');
-  }, [router]);
-  return null;
+    redirectToLogin()
+  }, [redirectToLogin])
+
+  return null
+}
+
+function useNavigationViewModel() {
+  const router = useRouter()
+
+  const redirectToLogin = useCallback(() => {
+    router.replace('/Login')
+  }, [router])
+
+  return {
+    redirectToLogin,
+  }
 }

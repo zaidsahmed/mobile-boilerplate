@@ -1,24 +1,24 @@
-import React, { useState } from 'react'
-import { Button, StyleSheet, TextInput, View } from 'react-native'
+import React from 'react';
+import { Button, StyleSheet, TextInput, View } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import { useColorScheme } from '@/hooks/useColorScheme'
-import { Colors } from 'react-native/Libraries/NewAppScreen'
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/Colors';
+import { useRegisterViewModel } from './useRegisterViewModel';
 
 const RegisterScreen = () => {
-  const theme = useColorScheme() ?? 'light'
-  const _styles = styles(theme)
-
-  const [name, setName] = useState('')
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-  const [submitted, setSubmitted] = useState(false)
-
-  const handleSubmit = () => {
-    setSubmitted(true)
-    // Here you would typically handle registration logic (API call, validation, etc.)
-  }
+  const {
+    theme,
+    name,
+    setName,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    submitted,
+    handleSubmit,
+  } = useRegisterViewModel();
+  const _styles = styles(theme);
 
   return (
     <ThemedView style={_styles.container}>
@@ -56,8 +56,8 @@ const RegisterScreen = () => {
         )}
       </View>
     </ThemedView>
-  )
-}
+  );
+};
 
 const styles = (theme: string) =>
   StyleSheet.create({
@@ -91,10 +91,10 @@ const styles = (theme: string) =>
       color: theme === 'light' ? Colors.black : Colors.white,
     },
     successMsg: {
-      color: 'green',
+      color: Colors.success,
       marginTop: 16,
       textAlign: 'center',
     },
-  })
+  });
 
-export default RegisterScreen
+export default RegisterScreen;

@@ -1,39 +1,23 @@
-import React, { useState } from 'react'
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
+import React from 'react';
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
 
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import { Colors } from '@/constants/Colors'
-import { useColorScheme } from '@/hooks/useColorScheme'
-import { useRouter } from 'expo-router'
+import { ThemedText } from '@/components/ThemedText';
+import { ThemedView } from '@/components/ThemedView';
+import { Colors } from '@/constants/Colors';
+import { useLoginViewModel } from './useLoginViewModel';
 
 const LoginScreen = () => {
-  const router = useRouter()
-  const theme = useColorScheme() ?? 'light'
-  const _styles = styles(theme)
-
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
-
-  const handleLogin = () => {
-    // Validate email and password
-    // ...
-
-    console.log('handleLogin')
-    // Implement login logic here
-    router.push('/OTP')
-    // router.push('/Home')
-  }
-
-  const handleRegister = () => {
-    console.log('handleRegister')
-    router.push('/Register')
-  }
-
-  const handleForgotPassword = () => {
-    console.log('handleForgotPassword')
-    router.push('/ForgotPassword')
-  }
+  const {
+    theme,
+    email,
+    setEmail,
+    password,
+    setPassword,
+    handleLogin,
+    handleRegister,
+    handleForgotPassword,
+  } = useLoginViewModel();
+  const _styles = styles(theme);
 
   return (
     <ThemedView style={_styles.container}>
@@ -105,8 +89,8 @@ const LoginScreen = () => {
         </ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  )
-}
+  );
+};
 
 const styles = (theme: string) =>
   StyleSheet.create({
