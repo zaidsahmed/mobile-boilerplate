@@ -1,4 +1,5 @@
 import React from 'react'
+import '../i18n'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
 import {
@@ -8,7 +9,7 @@ import {
 } from '@react-navigation/native'
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
-// import { StatusBar } from 'expo-status-bar'
+import { StatusBar } from 'expo-status-bar'
 import 'react-native-reanimated'
 
 export default function RootLayout() {
@@ -28,7 +29,7 @@ export default function RootLayout() {
       <Stack>
         <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
       </Stack>
-      {/* <StatusBar style='auto' /> */}
+      <StatusBar style='auto' />
     </ThemeProvider>
   )
 }

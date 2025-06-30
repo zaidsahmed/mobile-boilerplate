@@ -1,0 +1,43 @@
+{
+  "login": {
+    "title": "Login",
+    "email": "Email",
+    "password": "Password",
+    "forgotPassword": "Forgot Password?",
+    "loginButton": "Login",
+    "registerButton": "Register",
+    "orLoginWith": "Or login with",
+    "continueWithGoogle": "Continue with Google",
+    "continueWithFacebook": "Continue with Facebook",
+    "continueWithApple": "Continue with Apple"
+  },
+  "register": {
+    "title": "Register",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "registerButton": "Register",
+    "success": "Registration submitted!"
+  },
+  "forgotPassword": {
+    "title": "Forgot Password",
+    "email": "Email",
+    "label": "Enter your email address:",
+    "sendResetLink": "Send Reset Link",
+    "alertTitle": "Password Reset",
+    "alertMessage": "If an account exists for {{email}}, a reset link will be sent."
+  },
+  "otp": {
+    "title": "Verify OTP",
+    "label": "Enter the 4 or 6 digit code sent to you:",
+    "placeholder": "Enter OTP",
+    "verifyButton": "Verify OTP",
+    "verifying": "Verifying...",
+    "error": "OTP must be 4 or 6 digits",
+    "success": "OTP verified!"
+  },
+  "home": {
+    "title": "Home Screen",
+    "description": "Welcome to the home screen! This is where you can find the latest updates and features."
+  }
+}

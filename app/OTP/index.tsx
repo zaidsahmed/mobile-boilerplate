@@ -1,38 +1,31 @@
-import React from 'react';
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/Colors';
-import { useOTPViewModel } from './useOTPViewModel';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Colors } from '@/constants/Colors'
+import { useLocalization } from '@/hooks/useLocalization'
+import { useOTPViewModel } from './useOTPViewModel'
 
 const OTPVerificationScreen = () => {
-  const {
-    theme,
-    otp,
-    handleChange,
-    error,
-    success,
-    verifying,
-    handleVerify,
-  } = useOTPViewModel();
-  const _styles = styles(theme);
+  const { theme, otp, handleChange, error, success, verifying, handleVerify } =
+    useOTPViewModel()
+  const _styles = styles(theme)
+  const { t } = useLocalization()
 
   return (
     <ThemedView style={_styles.container}>
       <ThemedText type='title' style={_styles.title}>
-        Verify OTP
+        {t('otp.title')}
       </ThemedText>
-      <ThemedText style={_styles.label}>
-        Enter the 4 or 6 digit code sent to you:
-      </ThemedText>
+      <ThemedText style={_styles.label}>{t('otp.label')}</ThemedText>
       <TextInput
         style={_styles.input}
         value={otp}
         onChangeText={handleChange}
         keyboardType='number-pad'
         maxLength={6}
-        placeholder='Enter OTP'
+        placeholder={t('otp.placeholder')}
         placeholderTextColor={
           theme === 'light' ? Colors.light.gray60 : Colors.dark.gray60
         }
@@ -50,12 +43,12 @@ const OTPVerificationScreen = () => {
         activeOpacity={0.8}
       >
         <ThemedText style={_styles.buttonText}>
-          {verifying ? 'Verifying...' : 'Verify OTP'}
+          {verifying ? t('otp.verifying') : t('otp.verifyButton')}
         </ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  );
-};
+  )
+}
 
 const styles = (theme: string) =>
   StyleSheet.create({
@@ -117,5 +110,5 @@ const styles = (theme: string) =>
       fontSize: 18,
       fontWeight: 'bold',
     },
-  });
-export default OTPVerificationScreen;
+  })
+export default OTPVerificationScreen

@@ -1,29 +1,27 @@
-import React from 'react';
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/Colors';
-import { useForgotPasswordViewModel } from './useForgotPasswordViewModel';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Colors } from '@/constants/Colors'
+import { useLocalization } from '@/hooks/useLocalization'
+import { useForgotPasswordViewModel } from './useForgotPasswordViewModel'
 
 const ForgotPasswordScreen = () => {
-  const {
-    theme,
-    email,
-    setEmail,
-    handleForgotPassword,
-  } = useForgotPasswordViewModel();
-  const _styles = styles(theme);
+  const { theme, email, setEmail, handleForgotPassword } =
+    useForgotPasswordViewModel()
+  const _styles = styles(theme)
+  const { t } = useLocalization()
 
   return (
     <ThemedView style={_styles.container}>
       <ThemedText type='title' style={_styles.title}>
-        Forgot Password
+        {t('forgotPassword.title')}
       </ThemedText>
-      <ThemedText style={_styles.label}>Enter your email address:</ThemedText>
+      <ThemedText style={_styles.label}>{t('forgotPassword.label')}</ThemedText>
       <TextInput
         style={_styles.input}
-        placeholder='Email'
+        placeholder={t('forgotPassword.email')}
         value={email}
         onChangeText={setEmail}
         keyboardType='email-address'
@@ -34,11 +32,13 @@ const ForgotPasswordScreen = () => {
         }
       />
       <TouchableOpacity style={_styles.button} onPress={handleForgotPassword}>
-        <ThemedText style={_styles.buttonText}>Send Reset Link</ThemedText>
+        <ThemedText style={_styles.buttonText}>
+          {t('forgotPassword.sendResetLink')}
+        </ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  );
-};
+  )
+}
 
 const styles = (theme: string) =>
   StyleSheet.create({

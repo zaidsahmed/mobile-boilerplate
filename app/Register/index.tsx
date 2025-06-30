@@ -1,10 +1,11 @@
-import React from 'react';
-import { Button, StyleSheet, TextInput, View } from 'react-native';
+import React from 'react'
+import { Button, StyleSheet, TextInput, View } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/Colors';
-import { useRegisterViewModel } from './useRegisterViewModel';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Colors } from '@/constants/Colors'
+import { useLocalization } from '@/hooks/useLocalization'
+import { useRegisterViewModel } from './useRegisterViewModel'
 
 const RegisterScreen = () => {
   const {
@@ -17,25 +18,26 @@ const RegisterScreen = () => {
     setPassword,
     submitted,
     handleSubmit,
-  } = useRegisterViewModel();
-  const _styles = styles(theme);
+  } = useRegisterViewModel()
+  const _styles = styles(theme)
+  const { t } = useLocalization()
 
   return (
     <ThemedView style={_styles.container}>
       <ThemedText type='title' style={_styles.title}>
-        Register
+        {t('register.title')}
       </ThemedText>
       <View style={_styles.form}>
         <TextInput
           style={_styles.input}
-          placeholder='Name'
+          placeholder={t('register.name')}
           value={name}
           onChangeText={setName}
           autoCapitalize='words'
         />
         <TextInput
           style={_styles.input}
-          placeholder='Email'
+          placeholder={t('register.email')}
           value={email}
           onChangeText={setEmail}
           keyboardType='email-address'
@@ -43,21 +45,21 @@ const RegisterScreen = () => {
         />
         <TextInput
           style={_styles.input}
-          placeholder='Password'
+          placeholder={t('register.password')}
           value={password}
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title='Register' onPress={handleSubmit} />
+        <Button title={t('register.registerButton')} onPress={handleSubmit} />
         {submitted && (
           <ThemedText style={_styles.successMsg}>
-            Registration submitted!
+            {t('register.success')}
           </ThemedText>
         )}
       </View>
     </ThemedView>
-  );
-};
+  )
+}
 
 const styles = (theme: string) =>
   StyleSheet.create({
@@ -95,6 +97,6 @@ const styles = (theme: string) =>
       marginTop: 16,
       textAlign: 'center',
     },
-  });
+  })
 
-export default RegisterScreen;
+export default RegisterScreen

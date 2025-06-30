@@ -1,26 +1,28 @@
-import React from 'react';
-import { StyleSheet } from 'react-native';
+import React from 'react'
+import { StyleSheet } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/Colors';
-import { useHomeViewModel } from './useHomeViewModel';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Colors } from '@/constants/Colors'
+import { useLocalization } from '@/hooks/useLocalization'
+import { useHomeViewModel } from './useHomeViewModel'
 
 const HomeScreen = () => {
-  const { theme } = useHomeViewModel();
-  const _styles = styles(theme);
+  const { theme } = useHomeViewModel()
+  const _styles = styles(theme)
+  const { t } = useLocalization()
+
   return (
     <ThemedView style={_styles.container}>
       <ThemedText type='title' style={_styles.title}>
-        Home Screen
+        {t('home.title')}
       </ThemedText>
       <ThemedText style={_styles.description}>
-        Welcome to the home screen! This is where you can find the latest
-        updates and features.
+        {t('home.description')}
       </ThemedText>
     </ThemedView>
-  );
-};
+  )
+}
 
 const styles = (theme: string) =>
   StyleSheet.create({
@@ -43,6 +45,6 @@ const styles = (theme: string) =>
       textAlign: 'center',
       color: theme === 'light' ? Colors.light.text : Colors.dark.text,
     },
-  });
+  })
 
-export default HomeScreen;
+export default HomeScreen

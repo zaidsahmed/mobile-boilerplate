@@ -1,0 +1,42 @@
+{
+  "login": {
+    "title": "Iniciar sesión",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "loginButton": "Iniciar sesión",
+    "registerButton": "Registrarse",
+    "orLoginWith": "O inicia sesión con",
+    "continueWithGoogle": "Continuar con Google",
+    "continueWithFacebook": "Continuar con Facebook",
+    "continueWithApple": "Continuar con Apple"
+  },
+  "register": {
+    "title": "Registrarse",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "registerButton": "Registrarse",
+    "success": "¡Registro enviado!"
+  },
+  "forgotPassword": {
+    "title": "Olvidé mi contraseña",
+    "label": "Introduce tu correo electrónico:",
+    "sendResetLink": "Enviar enlace de restablecimiento",
+    "alertTitle": "Restablecer contraseña",
+    "alertMessage": "Si existe una cuenta para {{email}}, se enviará un enlace de restablecimiento."
+  },
+  "otp": {
+    "title": "Verificar OTP",
+    "label": "Introduce el código de 4 o 6 dígitos que se te envió:",
+    "placeholder": "Introduce OTP",
+    "verifyButton": "Verificar OTP",
+    "verifying": "Verificando...",
+    "error": "El OTP debe tener 4 o 6 dígitos",
+    "success": "¡OTP verificado!"
+  },
+  "home": {
+    "title": "Pantalla de inicio",
+    "description": "¡Bienvenido a la pantalla de inicio! Aquí puedes encontrar las últimas actualizaciones y funciones."
+  }
+}

@@ -15,6 +15,9 @@ export const Colors = {
   darkCharcoal: '#222222',
   teal: '#008080',
   deepSkyBlue: '#0a7ea4',
+  success: 'green',
+  error: 'red',
+  warning: '#FFA500',
 
   light: {
     primary: '#007bff',

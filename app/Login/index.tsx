@@ -1,10 +1,11 @@
-import React from 'react';
-import { StyleSheet, TextInput, TouchableOpacity } from 'react-native';
+import React from 'react'
+import { StyleSheet, TextInput, TouchableOpacity } from 'react-native'
 
-import { ThemedText } from '@/components/ThemedText';
-import { ThemedView } from '@/components/ThemedView';
-import { Colors } from '@/constants/Colors';
-import { useLoginViewModel } from './useLoginViewModel';
+import { ThemedText } from '@/components/ThemedText'
+import { ThemedView } from '@/components/ThemedView'
+import { Colors } from '@/constants/Colors'
+import { useLocalization } from '@/hooks/useLocalization'
+import { useLoginViewModel } from './useLoginViewModel'
 
 const LoginScreen = () => {
   const {
@@ -16,17 +17,21 @@ const LoginScreen = () => {
     handleLogin,
     handleRegister,
     handleForgotPassword,
-  } = useLoginViewModel();
-  const _styles = styles(theme);
+    handleLoginWithGoogle,
+    handleLoginWithFacebook,
+    handleLoginWithApple,
+  } = useLoginViewModel()
+  const _styles = styles(theme)
+  const { t } = useLocalization()
 
   return (
     <ThemedView style={_styles.container}>
       <ThemedText type='title' style={_styles.title}>
-        Login
+        {t('login.title')}
       </ThemedText>
       <TextInput
         style={_styles.input}
-        placeholder='Email'
+        placeholder={t('login.email')}
         value={email}
         onChangeText={setEmail}
         keyboardType='email-address'
@@ -37,7 +42,7 @@ const LoginScreen = () => {
       />
       <TextInput
         style={_styles.input}
-        placeholder='Password'
+        placeholder={t('login.password')}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
@@ -47,50 +52,50 @@ const LoginScreen = () => {
       />
       <TouchableOpacity onPress={handleForgotPassword}>
         <ThemedText type='link' style={_styles.forgotPassword}>
-          Forgot Password?
+          {t('login.forgotPassword')}
         </ThemedText>
       </TouchableOpacity>
       <TouchableOpacity style={_styles.button} onPress={handleLogin}>
-        <ThemedText style={_styles.buttonText}>Login</ThemedText>
+        <ThemedText style={_styles.buttonText}>
+          {t('login.loginButton')}
+        </ThemedText>
       </TouchableOpacity>
       <TouchableOpacity style={_styles.buttonOutline} onPress={handleRegister}>
-        <ThemedText style={_styles.buttonOutlineText}>Register</ThemedText>
+        <ThemedText style={_styles.buttonOutlineText}>
+          {t('login.registerButton')}
+        </ThemedText>
       </TouchableOpacity>
 
-      <ThemedText style={_styles.socialLoginText}>Or login with</ThemedText>
+      <ThemedText style={_styles.socialLoginText}>
+        {t('login.orLoginWith')}
+      </ThemedText>
       <TouchableOpacity
         style={[_styles.socialButton, _styles.google]}
-        onPress={() => {
-          /* handle Google login */
-        }}
+        onPress={handleLoginWithGoogle}
       >
         <ThemedText style={_styles.socialButtonText}>
-          Continue with Google
+          {t('login.continueWithGoogle')}
         </ThemedText>
       </TouchableOpacity>
       <TouchableOpacity
         style={[_styles.socialButton, _styles.facebook]}
-        onPress={() => {
-          /* handle Facebook login */
-        }}
+        onPress={handleLoginWithFacebook}
       >
         <ThemedText style={_styles.socialButtonText}>
-          Continue with Facebook
+          {t('login.continueWithFacebook')}
         </ThemedText>
       </TouchableOpacity>
       <TouchableOpacity
         style={[_styles.socialButton, _styles.apple]}
-        onPress={() => {
-          /* handle Apple login */
-        }}
+        onPress={handleLoginWithApple}
       >
         <ThemedText style={_styles.socialButtonText}>
-          Continue with Apple
+          {t('login.continueWithApple')}
         </ThemedText>
       </TouchableOpacity>
     </ThemedView>
-  );
-};
+  )
+}
 
 const styles = (theme: string) =>
   StyleSheet.create({
