@@ -3,12 +3,15 @@ import { useState } from 'react'
 import api from '@/api/axios'
 import { useApi } from '@/hooks/useApi'
 import { useColorScheme } from '@/hooks/useColorScheme'
+// import { useAuthNavigation } from '@navigation/AuthStack'
+import { useToast } from '@/providers/ToastProvider'
 import { useRouter } from 'expo-router'
-import { useState } from 'react'
 
 export const useLoginViewModel = () => {
   const router = useRouter()
   const theme = useColorScheme() ?? 'light'
+  // const { goToRegister, goToForgotPassword } = useAuthNavigation()
+  const { showToast } = useToast()
 
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
@@ -24,20 +27,36 @@ export const useLoginViewModel = () => {
     return response.data
   })
 
+  const showErrorToast = (title: string, message: string) => {
+    showToast({
+      type: 'error',
+      text1: title,
+      text2: message,
+    })
+  }
+  const showSuccessToast = (title: string, message: string) => {
+    showToast({
+      type: 'success',
+      text1: title,
+      text2: message,
+    })
+  }
+
   const handleLogin = async () => {
     // Validate email and password
     if (!email || !password) {
-      alert('Email and password are required')
+      showErrorToast('Missing Fields', 'Email and password are required')
       return
     }
     const result = await callLoginApi()
     if (result) {
-      // Handle successful login (e.g., save token, redirect)
-      console.log('Login successful:', result)
+      showSuccessToast('Login Successful', 'You have logged in successfully.')
       router.push('/OTP') // or router.push('/Home');
     } else if (loginError) {
-      // Optionally, show loginError.message to the user
-      console.log('Login error:', loginError)
+      showErrorToast(
+        'Login Failed',
+        loginError.message || 'Login failed. Please try again.'
+      )
     }
   }
 
