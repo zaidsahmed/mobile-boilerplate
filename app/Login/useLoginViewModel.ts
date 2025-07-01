@@ -1,3 +1,7 @@
+import { useState } from 'react'
+
+import api from '@/api/axios'
+import { useApi } from '@/hooks/useApi'
 import { useColorScheme } from '@/hooks/useColorScheme'
 import { useRouter } from 'expo-router'
 import { useState } from 'react'
@@ -9,13 +13,32 @@ export const useLoginViewModel = () => {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
 
-  const handleLogin = () => {
+  // Setup the API hook for login
+  const {
+    data: loginData,
+    error: loginError,
+    loading: loginLoading,
+    callApi: callLoginApi,
+  } = useApi(async () => {
+    const response = await api.post('/login', { email, password })
+    return response.data
+  })
+
+  const handleLogin = async () => {
     // Validate email and password
-    // ...
-    console.log('handleLogin')
-    // Implement login logic here
-    router.push('/OTP')
-    // router.push('/Home');
+    if (!email || !password) {
+      alert('Email and password are required')
+      return
+    }
+    const result = await callLoginApi()
+    if (result) {
+      // Handle successful login (e.g., save token, redirect)
+      console.log('Login successful:', result)
+      router.push('/OTP') // or router.push('/Home');
+    } else if (loginError) {
+      // Optionally, show loginError.message to the user
+      console.log('Login error:', loginError)
+    }
   }
 
   const handleRegister = () => {
@@ -51,6 +74,9 @@ export const useLoginViewModel = () => {
     password,
     setPassword,
     handleLogin,
+    loginLoading,
+    loginError,
+    loginData,
     handleRegister,
     handleForgotPassword,
     handleLoginWithGoogle,
