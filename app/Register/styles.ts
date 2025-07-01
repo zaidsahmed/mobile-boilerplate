@@ -37,6 +37,20 @@ const styles = (theme: string) =>
       marginTop: 16,
       textAlign: 'center',
     },
+    button: {
+      width: '100%',
+      backgroundColor:
+        theme === 'light' ? Colors.light.primary : Colors.dark.primary,
+      padding: 14,
+      borderRadius: 8,
+      alignItems: 'center',
+      marginBottom: 12,
+    },
+    buttonText: {
+      color: Colors.white,
+      fontSize: 18,
+      fontWeight: 'bold',
+    },
   })
 
 export default styles

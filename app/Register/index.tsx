@@ -1,9 +1,10 @@
 import React from 'react'
-import { Button, TextInput, View } from 'react-native'
+import { TextInput, TouchableOpacity, View } from 'react-native'
 
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { useLocalization } from '@/hooks/useLocalization'
+import BackButton from '../../components/BackButton'
 import styles from './styles'
 import { useRegisterViewModel } from './useRegisterViewModel'
 
@@ -24,6 +25,7 @@ const RegisterScreen = () => {
 
   return (
     <ThemedView style={stylesObj.container}>
+      <BackButton />
       <ThemedText type='title' style={stylesObj.title}>
         {t('register.title')}
       </ThemedText>
@@ -50,7 +52,13 @@ const RegisterScreen = () => {
           onChangeText={setPassword}
           secureTextEntry
         />
-        <Button title={t('register.registerButton')} onPress={handleSubmit} />
+        {/* <Button title={t('register.registerButton')} onPress={handleSubmit} /> */}
+        <TouchableOpacity style={stylesObj.button} onPress={handleSubmit}>
+          <ThemedText style={stylesObj.buttonText}>
+            {t('register.registerButton')}
+          </ThemedText>
+        </TouchableOpacity>
+
         {submitted && (
           <ThemedText style={stylesObj.successMsg}>
             {t('register.success')}

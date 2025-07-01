@@ -5,6 +5,7 @@ import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
 import { Colors } from '@/constants/Colors'
 import { useLocalization } from '@/hooks/useLocalization'
+import BackButton from '../../components/BackButton'
 import styles from './styles'
 import { useForgotPasswordViewModel } from './useForgotPasswordViewModel'
 
@@ -16,6 +17,7 @@ const ForgotPasswordScreen = () => {
 
   return (
     <ThemedView style={stylesObj.container}>
+      <BackButton />
       <ThemedText type='title' style={stylesObj.title}>
         {t('forgotPassword.title')}
       </ThemedText>

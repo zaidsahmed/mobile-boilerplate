@@ -1,4 +1,5 @@
 import React from 'react'
+import 'react-native-reanimated'
 import '../i18n'
 
 import { useColorScheme } from '@/hooks/useColorScheme'
@@ -10,7 +11,6 @@ import {
 import { useFonts } from 'expo-font'
 import { Stack } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import 'react-native-reanimated'
 
 export default function RootLayout() {
   const colorScheme = useColorScheme()
@@ -27,7 +27,14 @@ export default function RootLayout() {
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DefaultTheme : DarkTheme}>
       <Stack>
-        <Stack.Screen name='(tabs)' options={{ headerShown: false }} />
+        <Stack.Screen name='Login' options={{ headerShown: false }} />
+        <Stack.Screen name='Register' options={{ headerShown: false }} />
+        <Stack.Screen name='OTP' options={{ headerShown: false }} />
+        <Stack.Screen name='ForgotPassword' options={{ headerShown: false }} />
+        <Stack.Screen
+          name='(tabs)'
+          options={{ headerShown: true, title: 'Home' }}
+        />
       </Stack>
       <StatusBar style='auto' />
     </ThemeProvider>
