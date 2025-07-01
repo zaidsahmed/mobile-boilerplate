@@ -9,15 +9,15 @@ import { useHomeViewModel } from './useHomeViewModel'
 
 const HomeScreen = () => {
   const { theme } = useHomeViewModel()
-  const _styles = styles(theme)
+  const stylesObj = styles(theme)
   const { t } = useLocalization()
 
   return (
-    <ThemedView style={_styles.container}>
-      <ThemedText type='title' style={_styles.title}>
+    <ThemedView style={stylesObj.container}>
+      <ThemedText type='title' style={stylesObj.title}>
         {t('home.title')}
       </ThemedText>
-      <ThemedText style={_styles.description}>
+      <ThemedText style={stylesObj.description}>
         {t('home.description')}
       </ThemedText>
     </ThemedView>

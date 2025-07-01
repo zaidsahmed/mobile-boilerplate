@@ -19,24 +19,24 @@ const RegisterScreen = () => {
     submitted,
     handleSubmit,
   } = useRegisterViewModel()
-  const _styles = styles(theme)
+  const stylesObj = styles(theme)
   const { t } = useLocalization()
 
   return (
-    <ThemedView style={_styles.container}>
-      <ThemedText type='title' style={_styles.title}>
+    <ThemedView style={stylesObj.container}>
+      <ThemedText type='title' style={stylesObj.title}>
         {t('register.title')}
       </ThemedText>
-      <View style={_styles.form}>
+      <View style={stylesObj.form}>
         <TextInput
-          style={_styles.input}
+          style={stylesObj.input}
           placeholder={t('register.name')}
           value={name}
           onChangeText={setName}
           autoCapitalize='words'
         />
         <TextInput
-          style={_styles.input}
+          style={stylesObj.input}
           placeholder={t('register.email')}
           value={email}
           onChangeText={setEmail}
@@ -44,7 +44,7 @@ const RegisterScreen = () => {
           autoCapitalize='none'
         />
         <TextInput
-          style={_styles.input}
+          style={stylesObj.input}
           placeholder={t('register.password')}
           value={password}
           onChangeText={setPassword}
@@ -52,7 +52,7 @@ const RegisterScreen = () => {
         />
         <Button title={t('register.registerButton')} onPress={handleSubmit} />
         {submitted && (
-          <ThemedText style={_styles.successMsg}>
+          <ThemedText style={stylesObj.successMsg}>
             {t('register.success')}
           </ThemedText>
         )}

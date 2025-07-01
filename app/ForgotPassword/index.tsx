@@ -10,17 +10,19 @@ import { useForgotPasswordViewModel } from './useForgotPasswordViewModel'
 const ForgotPasswordScreen = () => {
   const { theme, email, setEmail, handleForgotPassword } =
     useForgotPasswordViewModel()
-  const _styles = styles(theme)
+  const stylesObj = styles(theme)
   const { t } = useLocalization()
 
   return (
-    <ThemedView style={_styles.container}>
-      <ThemedText type='title' style={_styles.title}>
+    <ThemedView style={stylesObj.container}>
+      <ThemedText type='title' style={stylesObj.title}>
         {t('forgotPassword.title')}
       </ThemedText>
-      <ThemedText style={_styles.label}>{t('forgotPassword.label')}</ThemedText>
+      <ThemedText style={stylesObj.label}>
+        {t('forgotPassword.label')}
+      </ThemedText>
       <TextInput
-        style={_styles.input}
+        style={stylesObj.input}
         placeholder={t('forgotPassword.email')}
         value={email}
         onChangeText={setEmail}
@@ -31,8 +33,8 @@ const ForgotPasswordScreen = () => {
           theme === 'light' ? Colors.light.argent : Colors.dark.argent
         }
       />
-      <TouchableOpacity style={_styles.button} onPress={handleForgotPassword}>
-        <ThemedText style={_styles.buttonText}>
+      <TouchableOpacity style={stylesObj.button} onPress={handleForgotPassword}>
+        <ThemedText style={stylesObj.buttonText}>
           {t('forgotPassword.sendResetLink')}
         </ThemedText>
       </TouchableOpacity>

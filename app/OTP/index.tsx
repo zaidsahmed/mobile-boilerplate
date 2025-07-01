@@ -10,17 +10,17 @@ import { useOTPViewModel } from './useOTPViewModel'
 const OTPVerificationScreen = () => {
   const { theme, otp, handleChange, error, success, verifying, handleVerify } =
     useOTPViewModel()
-  const _styles = styles(theme)
+  const stylesObj = styles(theme)
   const { t } = useLocalization()
 
   return (
-    <ThemedView style={_styles.container}>
-      <ThemedText type='title' style={_styles.title}>
+    <ThemedView style={stylesObj.container}>
+      <ThemedText type='title' style={stylesObj.title}>
         {t('otp.title')}
       </ThemedText>
-      <ThemedText style={_styles.label}>{t('otp.label')}</ThemedText>
+      <ThemedText style={stylesObj.label}>{t('otp.label')}</ThemedText>
       <TextInput
-        style={_styles.input}
+        style={stylesObj.input}
         value={otp}
         onChangeText={handleChange}
         keyboardType='number-pad'
@@ -32,17 +32,17 @@ const OTPVerificationScreen = () => {
         textAlign='center'
         autoFocus
       />
-      {error ? <ThemedText style={_styles.error}>{error}</ThemedText> : null}
+      {error ? <ThemedText style={stylesObj.error}>{error}</ThemedText> : null}
       {success ? (
-        <ThemedText style={_styles.success}>{success}</ThemedText>
+        <ThemedText style={stylesObj.success}>{success}</ThemedText>
       ) : null}
       <TouchableOpacity
-        style={[_styles.button, verifying && _styles.buttonDisabled]}
+        style={[stylesObj.button, verifying && stylesObj.buttonDisabled]}
         onPress={handleVerify}
         disabled={verifying}
         activeOpacity={0.8}
       >
-        <ThemedText style={_styles.buttonText}>
+        <ThemedText style={stylesObj.buttonText}>
           {verifying ? t('otp.verifying') : t('otp.verifyButton')}
         </ThemedText>
       </TouchableOpacity>
