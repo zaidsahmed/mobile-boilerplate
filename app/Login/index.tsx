@@ -3,7 +3,7 @@ import { TextInput, TouchableOpacity } from 'react-native'
 
 import { ThemedText } from '@/components/ThemedText'
 import { ThemedView } from '@/components/ThemedView'
-import { Colors } from '@/constants/Colors'
+import { Colors } from '@/constants'
 import { useLocalization } from '@/hooks/useLocalization'
 import styles from './styles'
 import { useLoginViewModel } from './useLoginViewModel'
