@@ -16,6 +16,7 @@
     "name": "Name",
     "email": "Email",
     "password": "Password",
+    "confirmPassword": "Confirm Password",
     "registerButton": "Register",
     "success": "Registration submitted!"
   },

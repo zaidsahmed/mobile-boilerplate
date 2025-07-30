@@ -1,20 +1,18 @@
-import { useState } from 'react'
+import { useState } from "react";
 
-import api from '@/api/axios'
-import { useApi } from '@/hooks/useApi'
-import { useColorScheme } from '@/hooks/useColorScheme'
-// import { useAuthNavigation } from '@navigation/AuthStack'
-import { useToast } from '@/providers/ToastProvider'
-import { useRouter } from 'expo-router'
+import { useApi } from "@/hooks/useApi";
+import { useColorScheme } from "@/hooks/useColorScheme";
+import { useToast } from "@/providers/ToastProvider";
+import { validateEmailAddress } from "@/utils/generalUtils";
+import { useNavigationUtils } from "@/utils/navigationUtils";
 
 export const useLoginViewModel = () => {
-  const router = useRouter()
-  const theme = useColorScheme() ?? 'light'
-  // const { goToRegister, goToForgotPassword } = useAuthNavigation()
-  const { showToast } = useToast()
+  const theme = useColorScheme() ?? "light";
+  const { showSuccessToast, showErrorToast } = useToast();
+  const { navigateToMainPage, navigateTo } = useNavigationUtils();
 
-  const [email, setEmail] = useState('')
-  const [password, setPassword] = useState('')
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   // Setup the API hook for login
   const {
@@ -23,68 +21,65 @@ export const useLoginViewModel = () => {
     loading: loginLoading,
     callApi: callLoginApi,
   } = useApi(async () => {
-    const response = await api.post('/login', { email, password })
-    return response.data
-  })
-
-  const showErrorToast = (title: string, message: string) => {
-    showToast({
-      type: 'error',
-      text1: title,
-      text2: message,
-    })
-  }
-  const showSuccessToast = (title: string, message: string) => {
-    showToast({
-      type: 'success',
-      text1: title,
-      text2: message,
-    })
-  }
+    await new Promise((resolve) => setTimeout(resolve, 1000)); // Simulate network delay
+    let resp = {
+      body: "Login successful",
+      status: 200,
+      statusText: "OK",
+    };
+    return resp;
+    // const response = await api.post("/login", { email, password });
+    // return response.data
+  });
 
   const handleLogin = async () => {
     // Validate email and password
-    if (!email || !password) {
-      showErrorToast('Missing Fields', 'Email and password are required')
-      return
+    if (!email.trim() || !password) {
+      showErrorToast("Missing Fields", "Email and password are required");
+      return;
     }
-    const result = await callLoginApi()
+    if (!validateEmailAddress(email)) {
+      showErrorToast("Incorrect email address", "Enter a valid email address");
+      return;
+    }
+
+    const result = await callLoginApi();
     if (result) {
-      showSuccessToast('Login Successful', 'You have logged in successfully.')
-      router.push('/OTP') // or router.push('/Home');
+      showSuccessToast("Login Successful", "You have logged in successfully.");
+      navigateTo("OTP"); // or navigateTo("Home");
     } else if (loginError) {
       showErrorToast(
-        'Login Failed',
-        loginError.message || 'Login failed. Please try again.'
-      )
+        "Login Failed",
+        loginError.message || "Login failed. Please try again."
+      );
     }
-  }
+  };
 
   const handleRegister = () => {
-    console.log('handleRegister')
-    router.push('/Register')
-  }
+    console.log("handleRegister");
+    navigateTo("Register");
+  };
 
   const handleForgotPassword = () => {
-    console.log('handleForgotPassword')
-    router.push('/ForgotPassword')
-  }
+    console.log("handleForgotPassword");
+    navigateTo("ForgotPassword");
+  };
 
   // Social login handlers can be added here if needed
   const handleLoginWithGoogle = () => {
-    console.log('Google login')
-    router.push('/Home')
-  }
+    console.log("Google login");
+    navigateToMainPage();
+  };
 
   const handleLoginWithFacebook = () => {
-    console.log('Facebook login')
-    router.push('/Home')
-  }
+    console.log("Facebook login");
+    navigateToMainPage();
+  };
 
   const handleLoginWithApple = () => {
-    console.log('Apple login')
-    router.push('/Home')
-  }
+    console.log("Apple login");
+    navigateToMainPage();
+  };
 
   return {
     theme,
@@ -101,5 +96,5 @@ export const useLoginViewModel = () => {
     handleLoginWithGoogle,
     handleLoginWithFacebook,
     handleLoginWithApple,
-  }
-}
+  };
+};
