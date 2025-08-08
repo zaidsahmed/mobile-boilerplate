@@ -1,24 +1,29 @@
-import { useRouter } from 'expo-router'
-import { useCallback, useEffect } from 'react'
+import { useCallback, useEffect } from "react";
+
+import { useRouter } from "expo-router";
+import * as WebBrowser from "expo-web-browser";
 
 export default function Index() {
-  const { redirectToLogin } = useNavigationViewModel()
+  // Ensure the auth session completes when the app is launched from the browser
+  WebBrowser.maybeCompleteAuthSession();
+
+  const { redirectToLogin } = useNavigationViewModel();
 
   useEffect(() => {
-    redirectToLogin()
-  }, [redirectToLogin])
+    redirectToLogin();
+  }, [redirectToLogin]);
 
-  return null
+  return null;
 }
 
 function useNavigationViewModel() {
-  const router = useRouter()
+  const router = useRouter();
 
   const redirectToLogin = useCallback(() => {
-    router.replace('/Login')
-  }, [router])
+    router.replace("/Login");
+  }, [router]);
 
   return {
     redirectToLogin,
-  }
+  };
 }

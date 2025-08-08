@@ -1,6 +1,7 @@
 import React from "react";
-import { TextInput, TouchableOpacity, View } from "react-native";
+import { TextInput, View } from "react-native";
 
+import CustomButton from "@/components/CustomButton";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { useLocalization } from "@/hooks/useLocalization";
@@ -61,11 +62,16 @@ const RegisterScreen = () => {
           secureTextEntry
         />
         {/* <Button title={t('register.registerButton')} onPress={handleSubmit} /> */}
-        <TouchableOpacity style={stylesObj.button} onPress={handleSubmit}>
+
+        <CustomButton
+          title={t("register.registerButton")}
+          onPressFunc={handleSubmit}
+        />
+        {/* <TouchableOpacity style={stylesObj.button} onPress={handleSubmit}>
           <ThemedText style={stylesObj.buttonText}>
             {t("register.registerButton")}
           </ThemedText>
-        </TouchableOpacity>
+        </TouchableOpacity> */}
 
         {/* {submitted && (
           <ThemedText style={stylesObj.successMsg}>

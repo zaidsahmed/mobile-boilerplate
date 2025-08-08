@@ -1,4 +1,4 @@
-package com.smktek.mobileboilerplate
+package com.diya.mobileboilerplate
 
 import android.app.Application
 import android.content.res.Configuration

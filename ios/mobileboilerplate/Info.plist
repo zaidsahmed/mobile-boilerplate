@@ -28,7 +28,13 @@
         <key>CFBundleURLSchemes</key>
         <array>
           <string>mobileboilerplate</string>
-          <string>com.smktek.mobileboilerplate</string>
+          <string>com.diya.mobileboilerplate</string>
+        </array>
+      </dict>
+      <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+          <string>com.googleusercontent.apps._some_id_here_</string>
         </array>
       </dict>
     </array>

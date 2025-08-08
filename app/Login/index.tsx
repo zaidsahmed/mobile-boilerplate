@@ -1,12 +1,13 @@
-import React from 'react'
-import { TextInput, TouchableOpacity } from 'react-native'
+import React from "react";
+import { TextInput } from "react-native";
 
-import { ThemedText } from '@/components/ThemedText'
-import { ThemedView } from '@/components/ThemedView'
-import { Colors } from '@/constants'
-import { useLocalization } from '@/hooks/useLocalization'
-import styles from './styles'
-import { useLoginViewModel } from './useLoginViewModel'
+import CustomButton, { CustomButtonTypes } from "@/components/CustomButton";
+import { ThemedText } from "@/components/ThemedText";
+import { ThemedView } from "@/components/ThemedView";
+import { Colors } from "@/constants";
+import { useLocalization } from "@/hooks/useLocalization";
+import styles from "./styles";
+import { useLoginViewModel } from "./useLoginViewModel";
 
 const LoginScreen = () => {
   const {
@@ -21,84 +22,75 @@ const LoginScreen = () => {
     handleLoginWithGoogle,
     handleLoginWithFacebook,
     handleLoginWithApple,
-  } = useLoginViewModel()
-  const stylesObj = styles(theme)
-  const { t } = useLocalization()
+  } = useLoginViewModel();
+
+  const stylesObj = styles(theme);
+  const { t } = useLocalization();
 
   return (
     <ThemedView style={stylesObj.container}>
-      <ThemedText type='title' style={stylesObj.title}>
-        {t('login.title')}
+      <ThemedText type="title" style={stylesObj.title}>
+        {t("login.title")}
       </ThemedText>
       <TextInput
         style={stylesObj.input}
-        placeholder={t('login.email')}
+        placeholder={t("login.email")}
         value={email}
         onChangeText={setEmail}
-        keyboardType='email-address'
-        autoCapitalize='none'
+        keyboardType="email-address"
+        autoCapitalize="none"
         placeholderTextColor={
-          theme === 'light' ? Colors.light.argent : Colors.dark.argent
+          theme === "light" ? Colors.light.argent : Colors.dark.argent
         }
       />
       <TextInput
         style={stylesObj.input}
-        placeholder={t('login.password')}
+        placeholder={t("login.password")}
         value={password}
         onChangeText={setPassword}
         secureTextEntry
         placeholderTextColor={
-          theme === 'light' ? Colors.light.argent : Colors.dark.argent
+          theme === "light" ? Colors.light.argent : Colors.dark.argent
         }
       />
-      <TouchableOpacity onPress={handleForgotPassword}>
-        <ThemedText type='link' style={stylesObj.forgotPassword}>
-          {t('login.forgotPassword')}
-        </ThemedText>
-      </TouchableOpacity>
-      <TouchableOpacity style={stylesObj.button} onPress={handleLogin}>
-        <ThemedText style={stylesObj.buttonText}>
-          {t('login.loginButton')}
-        </ThemedText>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={stylesObj.buttonOutline}
-        onPress={handleRegister}
-      >
-        <ThemedText style={stylesObj.buttonOutlineText}>
-          {t('login.registerButton')}
-        </ThemedText>
-      </TouchableOpacity>
+
+      <CustomButton
+        title={t("login.forgotPassword")}
+        onPressFunc={handleForgotPassword}
+        btnType={CustomButtonTypes.link}
+      />
+      <CustomButton
+        title={t("login.loginButton")}
+        onPressFunc={handleLogin}
+        showLeftIcon
+      />
+      <CustomButton
+        title={t("login.registerButton")}
+        onPressFunc={handleRegister}
+        btnType={CustomButtonTypes.outline}
+      />
 
       <ThemedText style={stylesObj.socialLoginText}>
-        {t('login.orLoginWith')}
+        {t("login.orLoginWith")}
       </ThemedText>
-      <TouchableOpacity
-        style={[stylesObj.socialButton, stylesObj.google]}
-        onPress={handleLoginWithGoogle}
-      >
-        <ThemedText style={stylesObj.socialButtonText}>
-          {t('login.continueWithGoogle')}
-        </ThemedText>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[stylesObj.socialButton, stylesObj.facebook]}
-        onPress={handleLoginWithFacebook}
-      >
-        <ThemedText style={stylesObj.socialButtonText}>
-          {t('login.continueWithFacebook')}
-        </ThemedText>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={[stylesObj.socialButton, stylesObj.apple]}
-        onPress={handleLoginWithApple}
-      >
-        <ThemedText style={stylesObj.socialButtonText}>
-          {t('login.continueWithApple')}
-        </ThemedText>
-      </TouchableOpacity>
-    </ThemedView>
-  )
-}
 
-export default LoginScreen
+      <CustomButton
+        title={t("login.continueWithGoogle")}
+        onPressFunc={handleLoginWithGoogle}
+        btnStyle={stylesObj.google}
+      />
+      <CustomButton
+        title={t("login.continueWithFacebook")}
+        onPressFunc={handleLoginWithFacebook}
+        btnStyle={stylesObj.facebook}
+      />
+      <CustomButton
+        title={t("login.continueWithApple")}
+        onPressFunc={handleLoginWithApple}
+        btnStyle={stylesObj.apple}
+      />
+    </ThemedView>
+  );
+};
+
+export default LoginScreen;

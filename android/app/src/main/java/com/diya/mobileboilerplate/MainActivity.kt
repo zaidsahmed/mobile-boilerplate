@@ -1,4 +1,4 @@
-package com.smktek.mobileboilerplate
+package com.diya.mobileboilerplate
 import expo.modules.splashscreen.SplashScreenManager
 
 import android.os.Build

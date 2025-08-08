@@ -1,24 +1,24 @@
-import { Colors } from '@/constants'
-import { StyleSheet } from 'react-native'
+import { Colors } from "@/constants";
+import { StyleSheet } from "react-native";
 
 const styles = (theme: string) =>
   StyleSheet.create({
     container: {
       flex: 1,
-      justifyContent: 'center',
-      alignItems: 'center',
+      justifyContent: "center",
+      alignItems: "center",
       padding: 20,
     },
     title: {
       fontSize: 32,
-      fontWeight: 'bold',
+      fontWeight: "bold",
       marginBottom: 32,
     },
     input: {
-      width: '100%',
+      width: "100%",
       height: 48,
       borderColor:
-        theme === 'light'
+        theme === "light"
           ? Colors.light.chineseSilver
           : Colors.dark.chineseSilver,
       borderWidth: 1,
@@ -28,56 +28,56 @@ const styles = (theme: string) =>
       fontSize: 16,
     },
     forgotPassword: {
-      color: theme === 'light' ? Colors.light.primary : Colors.dark.primary,
-      alignSelf: 'flex-end',
+      color: theme === "light" ? Colors.light.primary : Colors.dark.primary,
+      alignSelf: "flex-end",
       marginBottom: 24,
     },
     button: {
-      width: '100%',
+      width: "100%",
       backgroundColor:
-        theme === 'light' ? Colors.light.primary : Colors.dark.primary,
+        theme === "light" ? Colors.light.primary : Colors.dark.primary,
       padding: 14,
       borderRadius: 8,
-      alignItems: 'center',
+      alignItems: "center",
       marginBottom: 12,
     },
     buttonText: {
       color: Colors.white,
-      fontSize: 18,
-      fontWeight: 'bold',
+      fontSize: 16,
+      fontWeight: "bold",
     },
     buttonOutline: {
-      width: '100%',
+      width: "100%",
       borderColor:
-        theme === 'light' ? Colors.light.primary : Colors.dark.primary,
+        theme === "light" ? Colors.light.primary : Colors.dark.primary,
       borderWidth: 1,
       padding: 14,
       borderRadius: 8,
-      alignItems: 'center',
+      alignItems: "center",
     },
     buttonOutlineText: {
-      color: theme === 'light' ? Colors.light.primary : Colors.dark.primary,
-      fontSize: 18,
-      fontWeight: 'bold',
+      color: theme === "light" ? Colors.light.primary : Colors.dark.primary,
+      fontSize: 16,
+      fontWeight: "bold",
     },
     socialLoginText: {
       marginTop: 24,
       marginBottom: 8,
       fontSize: 16,
-      color: theme === 'light' ? Colors.light.argent : Colors.dark.argent,
-      alignSelf: 'center',
+      color: theme === "light" ? Colors.light.argent : Colors.dark.argent,
+      alignSelf: "center",
     },
     socialButton: {
-      width: '100%',
+      width: "100%",
       padding: 14,
       borderRadius: 8,
-      alignItems: 'center',
+      alignItems: "center",
       marginBottom: 10,
     },
     socialButtonText: {
       color: Colors.white,
       fontSize: 16,
-      fontWeight: 'bold',
+      fontWeight: "bold",
     },
     google: {
       backgroundColor: Colors.googleRed,
@@ -86,8 +86,9 @@ const styles = (theme: string) =>
       backgroundColor: Colors.facebookBlue,
     },
     apple: {
-      backgroundColor: Colors.appleBlack,
+      backgroundColor:
+        theme === "light" ? Colors.appleBlack : Colors.dark.gray60,
     },
-  })
+  });
 
-export default styles
+export default styles;

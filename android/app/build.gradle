@@ -87,9 +87,9 @@ android {
     buildToolsVersion rootProject.ext.buildToolsVersion
     compileSdk rootProject.ext.compileSdkVersion
 
-    namespace 'com.smktek.mobileboilerplate'
+    namespace 'com.diya.mobileboilerplate'
     defaultConfig {
-        applicationId 'com.smktek.mobileboilerplate'
+        applicationId 'com.diya.mobileboilerplate'
         minSdkVersion rootProject.ext.minSdkVersion
         targetSdkVersion rootProject.ext.targetSdkVersion
         versionCode 1

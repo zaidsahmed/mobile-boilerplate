@@ -1,6 +1,7 @@
 import React from "react";
-import { TextInput, TouchableOpacity } from "react-native";
+import { TextInput } from "react-native";
 
+import CustomButton from "@/components/CustomButton";
 import { ThemedText } from "@/components/ThemedText";
 import { ThemedView } from "@/components/ThemedView";
 import { Colors } from "@/constants";
@@ -39,7 +40,13 @@ const OTPVerificationScreen = () => {
       {success ? (
         <ThemedText style={stylesObj.success}>{success}</ThemedText>
       ) : null} */}
-      <TouchableOpacity
+
+      <CustomButton
+        title={verifying ? t("otp.verifying") : t("otp.verifyButton")}
+        onPressFunc={handleVerify}
+        showLeftIcon
+      />
+      {/* <TouchableOpacity
         style={[stylesObj.button, verifying && stylesObj.buttonDisabled]}
         onPress={handleVerify}
         disabled={verifying}
@@ -48,7 +55,7 @@ const OTPVerificationScreen = () => {
         <ThemedText style={stylesObj.buttonText}>
           {verifying ? t("otp.verifying") : t("otp.verifyButton")}
         </ThemedText>
-      </TouchableOpacity>
+      </TouchableOpacity> */}
     </ThemedView>
   );
 };
